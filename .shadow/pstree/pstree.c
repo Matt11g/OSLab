@@ -197,6 +197,6 @@ int main(int argc, char *argv[]) {
 	getdir();
 	build_tree();
 	//assert(nodes[0].son->bro == NULL);
-	print_tree(nodes[0], 0);
+	print_tree(&nodes[0], 0);
   return 0;
 }
