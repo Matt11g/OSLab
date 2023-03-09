@@ -87,7 +87,12 @@ static void getdir() {
 							break;
 						}
 					}
-				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) nr_n--; // ommitted  //printf("pid = %d, comm = %s, ppid = %d\n", nodes[nr_n].pid, nodes[nr_n].comm, nodes[nr_n].ppid);
+				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
+		        nodes[nr_n].pid = 0; nodes[nr_n].ppid = 0;
+	          nodes[nr_n].son = NULL; nodes[nr_n].bro = NULL;
+						nr_n--; // ommitted  
+					}
+					//printf("pid = %d, comm = %s, ppid = %d\n", nodes[nr_n].pid, nodes[nr_n].comm, nodes[nr_n].ppid);
 					//ppid == 0 -> root -> create a node with pid 0
 					fclose(fp);
 			  }
