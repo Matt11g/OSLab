@@ -87,7 +87,7 @@ static void getdir() {
 							break;
 						}
 					}
-				  //printf("pid = %d, comm = %s, ppid = %d\n", nodes[nr_n].pid, nodes[nr_n].comm, nodes[nr_n].ppid);
+				  if (ppid == 0) printf("pid = %d, comm = %s, ppid = %d\n", nodes[nr_n].pid, nodes[nr_n].comm, nodes[nr_n].ppid);
 					//ppid == 0 -> root -> create a node with pid 0
 					fclose(fp);
 			  }
@@ -134,7 +134,7 @@ static void build_tree() {
 	}
 }
 
-bool line[512];
+bool line[1024]; //TODO
 static void print_tree(Node *cur, int len) {//len: position of start
 	//printf("the tree is printed\n");
   if (NULL == cur) return;
@@ -196,7 +196,7 @@ int main(int argc, char *argv[]) {
 	// TODO
 	getdir();
 	build_tree();
-	assert(nodes[0].son->bro == NULL);
+	//assert(nodes[0].son->bro == NULL);
 	print_tree(nodes[0].son, 0);
   return 0;
 }
