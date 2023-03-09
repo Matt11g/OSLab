@@ -170,7 +170,10 @@ static void print_tree(Node *cur, int len) {//len: position of start
 			else printf(" ");
 		}
 		if (cur->bro->bro) printf("\u251c");
-		else printf("\u2514");
+		else {
+			printf("\u2514");
+			line[len - 2] = 0;
+		}
 		printf("\u2500");
     print_tree(cur->bro, len);
 	}
