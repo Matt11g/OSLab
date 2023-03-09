@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
 	// TODO
 	getdir();
 	build_tree();
-	//assert(nodes[0].son->bro == NULL);
+	assert(nodes[0].son->bro == NULL);
 	print_tree(nodes[0].son, 0);
 	printf("\n");
   return 0;
