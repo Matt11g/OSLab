@@ -9,7 +9,7 @@
 #include <string.h>
 
 void display_version() {
-  printf("pstree (PSmisc) 23.4\nCopyright (C) 1993-2020 Werner Almesberger and Craig Small\n\nPSmisc comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under	the terms of the GNU General Public License.\nFor more information about these matters, see the files named COPYING.\n");
+  printf("pstree (PSmisc) 23.4\nCopyright (C) 1993-2020 Werner Almesberger and Craig Small\n\nPSmisc comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under the terms of the GNU General Public License.\nFor more information about these matters, see the files named COPYING.\n");
 }
 
 static bool spids = false, nsort = false, ver = false;
@@ -81,14 +81,13 @@ static void getdir() {
           // fscanf, fgets, ...
 					nr_n ++;
 				  fscanf(fp, "%d (%[^)]%*c %c %d", &(nodes[nr_n].pid), nodes[nr_n].comm, &state, &(nodes[nr_n].ppid));
-					//TODO: ()
+					//TODO: ((sd-pam)), 1045
 					for (int i = 63; i >= 0; i--){
             if (nodes[nr_n].comm[i] == ')'){
               nodes[nr_n].comm[i] = '\0';
 							break;
 						}
 					}
-					if (nodes[nr_n].ppid == 0) printf("%d %s\n", nodes[nr_n].pid, nodes[nr_n].comm);
 				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
 		        nodes[nr_n].pid = 0; nodes[nr_n].ppid = 0;
 	          nodes[nr_n].son = NULL; nodes[nr_n].bro = NULL;
