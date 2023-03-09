@@ -29,6 +29,7 @@ static int parse_args(int argc, char *argv[]) {
 				printf("-p, --show-pids\n");
 				printf("-n, --numeric-sort\n");
 				printf("-p, --version\n");
+				assert(0);
 		}
 	}
 	return 0;
@@ -141,7 +142,9 @@ static void print_tree(Node *cur) {
 	printf("%s", cur->comm);
 	if (spids) printf("(%d)", cur->pid);
 	if (cur->son) {
-    //
+		if (cur->son->bro) printf("\u2500\u252c\u2500");
+		else printf("\u2500\u2500\u2500");
+		//
 		print_tree(cur->son);
 	}
   if (cur->bro) {
