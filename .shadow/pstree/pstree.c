@@ -87,11 +87,11 @@ static void getdir() {
 							break;
 						}
 					}
-				  /*if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
+				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
 		        nodes[nr_n].pid = 0; nodes[nr_n].ppid = 0;
 	          nodes[nr_n].son = NULL; nodes[nr_n].bro = NULL;
 						nr_n--; // ommitted  
-					}*/
+					}
 					//printf("pid = %d, comm = %s, ppid = %d\n", nodes[nr_n].pid, nodes[nr_n].comm, nodes[nr_n].ppid);
 					//ppid == 0 -> root -> create a node with pid 0
 					fclose(fp);
@@ -118,7 +118,8 @@ static void insert_node (pid_t ppid, int idx) {
 			break;
 		}
 	}
-	assert (-1 != pidx);
+	//assert (-1 != pidx);
+	if (-1 == pidx) return; //kthreadd(2)->rcu_gp(3)
 	if (nodes[pidx].son != NULL) {
 		Node *p = nodes[pidx].son;
 		while (p->bro != NULL) p = p->bro;
