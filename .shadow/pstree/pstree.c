@@ -81,15 +81,14 @@ static void getdir() {
           // fscanf, fgets, ...
 					nr_n ++;
 				  fscanf(fp, "%d (%[^)]%*c %c %d", &(nodes[nr_n].pid), nodes[nr_n].comm, &state, &(nodes[nr_n].ppid));
-					if (state == ' '){
-				    fscanf(fp, "%d (%[^)]%*c%*c %c %d", &(nodes[nr_n].pid), nodes[nr_n].comm, &state, &(nodes[nr_n].ppid));
-					}
+					//TODO: ()
 					for (int i = 63; i >= 0; i--){
             if (nodes[nr_n].comm[i] == ')'){
               nodes[nr_n].comm[i] = '\0';
 							break;
 						}
 					}
+					if (nodes[nr_n].ppid == 0) printf("%d %s\n", nodes[nr_d].pid, nodes[nr_d].comm);
 				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
 		        nodes[nr_n].pid = 0; nodes[nr_n].ppid = 0;
 	          nodes[nr_n].son = NULL; nodes[nr_n].bro = NULL;
