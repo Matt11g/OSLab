@@ -88,7 +88,7 @@ static void getdir() {
 							break;
 						}
 					}
-					if (nodes[nr_n].ppid == 0) printf("%d %s\n", nodes[nr_d].pid, nodes[nr_d].comm);
+					if (nodes[nr_n].ppid == 0) printf("%d %s\n", nodes[nr_n].pid, nodes[nr_n].comm);
 				  if (nodes[nr_n].ppid == 0 && nodes[nr_n].pid != 1) {
 		        nodes[nr_n].pid = 0; nodes[nr_n].ppid = 0;
 	          nodes[nr_n].son = NULL; nodes[nr_n].bro = NULL;
