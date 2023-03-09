@@ -156,8 +156,9 @@ static void print_tree(Node *cur, int len) {//len: position of start
 	}
   if (cur->bro) {
     printf("\n");
-		for (int i = 0; i < len; i++){
+		for (int i = 0; i < len - 1; i++){
       if (line[i]) printf("\u2502");
+			else printf(" ");
 		}
 		printf("\u2500");
     print_tree(cur->bro, len);
