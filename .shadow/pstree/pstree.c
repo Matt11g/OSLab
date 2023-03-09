@@ -80,7 +80,7 @@ static void getdir() {
 			  if (fp) {
           // fscanf, fgets, ...
 					nr_n ++;
-				  fscanf(fp, "%d (%[^)] %c %c %d", &(nodes[nr_n].pid), nodes[nr_n].comm, state, &(nodes[nr_n].ppid));
+				  fscanf(fp, "%d (%[^)] %c %c %d", &(nodes[nr_n].pid), nodes[nr_n].comm, &state, &state, &(nodes[nr_n].ppid));
 					for (int i = 63; i >= 0; i--){
             if (nodes[nr_n].comm[i] == ')'){
               nodes[nr_n].comm[i] = '\0';
