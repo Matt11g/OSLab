@@ -177,7 +177,6 @@ static void print_tree(Node *cur, int len) {//len: position of start
 		printf("\u2500");
     print_tree(cur->bro, len);
 	}
-	else printf("\n");
 	//else {
   //  line[len]
 	//}
@@ -199,5 +198,6 @@ int main(int argc, char *argv[]) {
 	build_tree();
 	//assert(nodes[0].son->bro == NULL);
 	print_tree(&nodes[0], 0);
+	printf("\n");
   return 0;
 }
