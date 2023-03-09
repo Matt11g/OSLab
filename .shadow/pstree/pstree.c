@@ -142,17 +142,26 @@ static void print_tree(Node *cur, int len) {//len: position of start
   //  
 	//}
 	printf("%s", cur->comm);
-	if (spids) printf("(%d)", cur->pid);
+	int pidLen = 0;
+	if (spids){
+		printf("(%d)", cur->pid);
+		pidLen += 2;
+		int temp = cur->pid;
+    while (temp) {//temp != 0
+      temp /= 10;
+			pidLen++;
+		}
+	}
 	if (cur->son) {
 		if (cur->son->bro) {
 			printf("\u2500\u252c\u2500");
-      line[len + strlen(cur->comm) + 1] = 1;
+      line[len + strlen(cur->comm) + pidLen + 1] = 1;
 		}
 		else{
 			printf("\u2500\u2500\u2500");
-      //line[len + strlen(cur->comm) + 1] = 0;
+      line[len + strlen(cur->comm) + pidLen + 1] = 0;
 		}
-		print_tree(cur->son, len + strlen(cur->comm) + 3);
+		print_tree(cur->son, len + strlen(cur->comm) + pidLen + 3);
 	}
   if (cur->bro) {
     printf("\n");
@@ -163,6 +172,9 @@ static void print_tree(Node *cur, int len) {//len: position of start
 		printf("\u2500");
     print_tree(cur->bro, len);
 	}
+	//else {
+  //  line[len]
+	//}
 }
 
 int main(int argc, char *argv[]) {
