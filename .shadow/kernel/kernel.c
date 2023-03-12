@@ -7,7 +7,7 @@
 
 static int w, h;  // Screen size
 
-#define KEYNAME(key) \
+/*#define KEYNAME(key) \
   [AM_KEY_##key] = #key,
 static const char *key_names[] = { AM_KEYS(KEYNAME) };
 
@@ -23,7 +23,7 @@ void print_key() {
     puts(key_names[event.keycode]);
     puts("\n");
   }
-}
+}*/
 
 void get_key() {
   AM_INPUT_KEYBRD_T event = { .keycode = AM_KEY_NONE };
@@ -53,9 +53,10 @@ void splash() {
 
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
-      if ((x & 1) ^ (y & 1)) {
+      /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
-      }
+      }*/
+      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
     }
   }
 }
@@ -66,11 +67,11 @@ int main(const char *args) {
 
   /*puts("mainargs = \"");
   puts(args);  // make run mainargs=xxx
-  puts("\"\n");
+  puts("\"\n");*/
 
   splash();
 
-  puts("Press any key to see its key code...\n");
+  /*puts("Press any key to see its key code...\n");
   while (1) {
     print_key();
   }*/
