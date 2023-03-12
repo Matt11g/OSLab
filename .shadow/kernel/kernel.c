@@ -7,15 +7,15 @@
 
 static int w, h;  // Screen size
 
-/*#define KEYNAME(key) \
+#define KEYNAME(key) \
   [AM_KEY_##key] = #key,
-static const char *key_names[] = { AM_KEYS(KEYNAME) };*/
+static const char *key_names[] = { AM_KEYS(KEYNAME) };
 
 static inline void puts(const char *s) {
   for (; *s; s++) putch(*s);
 }
 
-/*void print_key() {
+void print_key() {
   AM_INPUT_KEYBRD_T event = { .keycode = AM_KEY_NONE };
   ioe_read(AM_INPUT_KEYBRD, &event);
   if (event.keycode != AM_KEY_NONE && event.keydown) {
@@ -23,7 +23,7 @@ static inline void puts(const char *s) {
     puts(key_names[event.keycode]);
     puts("\n");
   }
-}*/
+}
 
 void get_key() {
   AM_INPUT_KEYBRD_T event = { .keycode = AM_KEY_NONE };
@@ -71,11 +71,11 @@ int main(const char *args) {
   splash();
 
   puts("Press any key to see its key code...\n");
-  while (1) {
+  */while (1) {
     print_key();
-  }*/
-  while (1) {
-
-	}
+  }
+  /*while (1) {
+    get_key();
+	}*/
   return 0;
 }
