@@ -51,13 +51,16 @@ void splash() {
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
   h = info.height;
-
+  
+	int cnt = 0;
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
+			cnt++;
+      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, cnt & 0xffffff);
+      //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
     }
   }
 }
