@@ -60,7 +60,7 @@ void splash() {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
 			//assert(cnt + 2 <= img_jpg_len);
-      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, img_jpg[cnt]/*(img_jpg[cnt] << 16) + (img_jpg[cnt + 1] << 8) + (img_jpg[cnt + 2])*/);
+      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, img_jpg[cnt % img_jpg_len]/*(img_jpg[cnt] << 16) + (img_jpg[cnt + 1] << 8) + (img_jpg[cnt + 2])*/);
 		  cnt ++;
       //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
     }
