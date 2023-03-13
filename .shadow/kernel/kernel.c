@@ -53,12 +53,13 @@ void splash() {
   w = info.width;
   h = info.height;
   
+	printf("w = %d, h = %d\n", w, h);
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-			assert(cnt + 2 <= img_jpg_len);
+			//assert(cnt + 2 <= img_jpg_len);
       draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, (img_jpg[cnt] << 16) + (img_jpg[cnt + 1] << 8) + (img_jpg[cnt + 2]));
 		  cnt += 3;
       //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
