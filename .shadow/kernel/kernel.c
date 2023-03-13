@@ -46,13 +46,13 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color) {
   ioe_write(AM_GPU_FBDRAW, &event);
 }
 
+int cnt = 0;
 void splash() {
   AM_GPU_CONFIG_T info = {0};
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
   h = info.height;
   
-	int cnt = 0;
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
       /*if ((x & 1) ^ (y & 1)) {
