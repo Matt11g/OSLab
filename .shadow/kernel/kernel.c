@@ -4,7 +4,7 @@
 #include <klib-macros.h>
 #include "img.h"
 
-#define SIDE 8
+#define SIDE 1
 
 static int w, h;  // Screen size
 
@@ -58,8 +58,8 @@ void splash() {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-			cnt++;
-      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, cnt & 0xffffff);
+      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, (img_jpg[cnt] << 16) + (img_jpg[cnt + 1] << 8) + (img_jpg[cnt + 2]));
+		  cnt += 3;
       //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
     }
   }
