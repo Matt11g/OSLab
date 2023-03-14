@@ -77,5 +77,5 @@ int main(int argc, char *argv[]) {
 	// 3. 等待线程执行完毕
 	  join();
 	}
-  printf("%d\n", result);
+  printf("%d\n", dp[N - 1][M - 1]);
 }
