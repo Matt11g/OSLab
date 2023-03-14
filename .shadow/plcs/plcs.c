@@ -12,6 +12,7 @@ int result;
 
 #define DP(x, y) (((x) >= 0 && (y) >= 0) ? dp[x][y] : 0)
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 #define MAX3(x, y, z) MAX(MAX(x, y), z)
 
 spinlock_t lk = SPIN_INIT();
@@ -38,12 +39,15 @@ void Tworker(int id) {
 
 int R;
 void plcs_worker() {
+	//int len = MAX(N, M), wid = MIN(N, M);
   for (int i = 0; i <= R; i++) {
-		int j = R - i;
-    int skip_a = DP(i - 1, j);
-    int skip_b = DP(i, j - 1);
-    int take_both = DP(i - 1, j - 1) + (A[i] == B[j]);
-    dp[i][j] = MAX3(skip_a, skip_b, take_both);
+		  int j = R - i;
+      if (0 <= i && i < N && 0 <= j && j < M) {
+      int skip_a = DP(i - 1, j);
+      int skip_b = DP(i, j - 1);
+      int take_both = DP(i - 1, j - 1) + (A[i] == B[j]);
+      dp[i][j] = MAX3(skip_a, skip_b, take_both);
+		}
 	}
 }
 
@@ -62,7 +66,7 @@ int main(int argc, char *argv[]) {
   join();  // Wait for all workers
   */
 
-  for (int round = 0; round < 2 * n - 1; round++) {
+  for (int round = 0; round < N + M - 1; round++) {
 	// 1. 计算出本轮能够计算的单元格
 	  R = round;
 	  //int nr = (round < n) ? round : (2 * n - 1 - round);
