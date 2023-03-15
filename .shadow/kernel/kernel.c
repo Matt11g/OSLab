@@ -3,6 +3,7 @@
 #include <klib.h>
 #include <klib-macros.h>
 #include "img.h"
+#include "image.h"
 
 #define SIDE 16
 
@@ -60,7 +61,7 @@ void splash() {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
 			//assert(cnt + 2 <= img_jpg_len);
-      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, (img_jpg[(cnt + 2) % img_jpg_len] << 16) + (img_jpg[(cnt + 1) % img_jpg_len] << 8) + (img_jpg[(cnt) % img_jpg_len]));
+      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, (img_rgb[(cnt + 2) % img_rgb_len] << 16) + (img_rgb[(cnt + 1) % img_rgb_len] << 8) + (img_rgb[(cnt) % img_rgb_len]));
 		  cnt ++;
       //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
     }
