@@ -40,19 +40,15 @@ void Tworker(int id) {
 int R;
 void plcs_worker() {
 	//int len = MAX(N, M), wid = MIN(N, M);
-	spin_lock(&lk);
   for (int i = 0; i <= R; i++) {
-      spin_unlock(&lk);
-		  int j = R - i;
-      if (0 <= i && i < N && 0 <= j && j < M) {
+		int j = R - i;
+    if (0 <= i && i < N && 0 <= j && j < M) {
       int skip_a = DP(i - 1, j);
       int skip_b = DP(i, j - 1);
       int take_both = DP(i - 1, j - 1) + (A[i] == B[j]);
       dp[i][j] = MAX3(skip_a, skip_b, take_both);
-			spin_lock(&lk);
 		}
 	}
-	spin_unlock(&lk);
 }
 
 int main(int argc, char *argv[]) {
@@ -64,13 +60,13 @@ int main(int argc, char *argv[]) {
 
   // Add preprocessing code here
 
-  for (int i = 0; i < T; i++) {
+  /*for (int i = 0; i < T; i++) {
     create(plcs_worker);
   }
-  join();  // Wait for all workers
+  join();*/  // Wait for all workers
   
 
-  /*for (int round = 0; round < N + M - 1; round++) {
+  for (int round = 0; round < N + M - 1; round++) {
 	// 1. 计算出本轮能够计算的单元格
 	  R = round;
 	  //int nr = (round < n) ? round : (2 * n - 1 - round);
@@ -80,6 +76,6 @@ int main(int argc, char *argv[]) {
 		}
 	// 3. 等待线程执行完毕
 	  join();
-	}*/
+	}
   printf("%d\n", dp[N - 1][M - 1]);
 }
