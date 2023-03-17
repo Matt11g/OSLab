@@ -50,7 +50,7 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color) {
 int ww = 750, hh = 530;
 //img_rgb_len = 1192500
 uint32_t get_rgb(int num) {
-  return (img_rgb[num] << 16) + (img_rgb[num + 1] << 8) + (img_rgb[num + 2]);
+  return (img_rgb[num + 2] << 16) + (img_rgb[num + 1] << 8) + (img_rgb[num]);
 }
 
 void splash() {
