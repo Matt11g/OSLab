@@ -3,9 +3,8 @@
 #include <klib.h>
 #include <klib-macros.h>
 #include "img.h"
-#include "image.h"
 
-#define SIDE 16
+#define SIDE 1
 
 static int w, h;  // Screen size
 
@@ -47,23 +46,24 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color) {
   ioe_write(AM_GPU_FBDRAW, &event);
 }
 
-int cnt = 0;
+//int cnt = 0;
+int ww = 750, hh = 530;
+//img_rgb_len = 1192500
+uint32_t get_rgb(int num) {
+  return (img_rgb[num] << 16) + (img_rgb[num + 1] << 8) + (img_rgb[num + 2]);
+}
+
 void splash() {
   AM_GPU_CONFIG_T info = {0};
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
-  h = info.height;
-  
-	//printf("w = %d, h = %d\n", w, h);
+  h = info.height;  
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-			//assert(cnt + 2 <= img_jpg_len);
-      draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, (img_rgb[(cnt + 2) % img_rgb_len] << 16) + (img_rgb[(cnt + 1) % img_rgb_len] << 8) + (img_rgb[(cnt) % img_rgb_len]));
-		  cnt ++;
-      //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, ((x & 0xfff) << 12) + (y & 0xfff));
+			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * ww * h / w + y * hh / h));
     }
   }
 }
