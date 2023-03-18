@@ -30062,8 +30062,8 @@ void splash() {
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
   h = info.height;  
-  for (int x = 0; x * SIDE <= w; x ++) {
-    for (int y = 0; y * SIDE <= h; y++) {
+  for (int x = 0; x * SIDE <= h; x ++) {
+    for (int y = 0; y * SIDE <= w; y++) {
       //if ((x & 1) ^ (y & 1)) {
         //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       //}
