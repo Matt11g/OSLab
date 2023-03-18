@@ -30067,7 +30067,7 @@ void splash() {
       //if ((x & 1) ^ (y & 1)) {
         //draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       //}
-			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * ww / w * ww + y * hh / h));
+			draw_tile(y * SIDE, x * SIDE, SIDE, SIDE, get_rgb(x * ww / w * ww + y * hh / h));
     }
   }
   /*for (int x = 0; x * SIDE < MIN(ww, w); x ++) {
