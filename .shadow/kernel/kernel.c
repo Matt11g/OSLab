@@ -53,7 +53,7 @@ uint32_t get_rgb(int num) {
   return (img_rgb[3 * num] << 16) + (img_rgb[3 * num + 1] << 8) + (img_rgb[3 * num + 2]);
 }
 
-#define MIN(x, y) (x > y) ? y : x
+#define MIN(x, y) ((x > y) ? y : x)
 void splash() {
   AM_GPU_CONFIG_T info = {0};
   ioe_read(AM_GPU_CONFIG, &info);
