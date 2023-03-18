@@ -63,7 +63,7 @@ void splash() {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-			if (x < ww && y < h) draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x *  h + y));
+			if (x < ww && y < hh) draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x *  h + y));
     }
   }
 }
