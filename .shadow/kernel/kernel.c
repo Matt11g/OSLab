@@ -30033,7 +30033,7 @@ void get_key() {
   AM_INPUT_KEYBRD_T event = { .keycode = AM_KEY_NONE };
   ioe_read(AM_INPUT_KEYBRD, &event);
   if (event.keycode != AM_KEY_NONE && event.keydown) {
-    if (event.keycode == AM_KEY_ESCAPE) halt(1);
+    if (event.keycode == AM_KEY_ESCAPE) halt(0);
   }
 }
 
