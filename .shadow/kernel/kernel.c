@@ -47,7 +47,7 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color) {
 }
 
 //int cnt = 0;
-int ww = 400, hh = 300;
+int ww = 300, hh = 400;
 //img_rgb_len = 1192500
 uint32_t get_rgb(int num) {
   return (img_rgb[3 * num] << 16) + (img_rgb[3 * num + 1] << 8) + (img_rgb[3 * num + 2]);
