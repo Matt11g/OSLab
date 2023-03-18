@@ -1,3 +1,4 @@
+export TOKEN := anZP9zD6
 NAME := kernel
 SRCS := kernel.c
 export MODULE  := L0
