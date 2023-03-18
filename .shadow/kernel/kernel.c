@@ -50,7 +50,7 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color) {
 int ww = 300, hh = 400;
 //img_rgb_len = 1192500
 uint32_t get_rgb(int num) {
-  return (img_rgb[3 * num + 2] << 16) + (img_rgb[3 * num + 1] << 8) + (img_rgb[3 * num]);
+  return (img_rgb[3 * num] << 16) + (img_rgb[3 * num + 1] << 8) + (img_rgb[3 * num + 2]);
 }
 
 void splash() {
@@ -58,6 +58,7 @@ void splash() {
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
   h = info.height;  
+	printf("w = %d, h = %d\n", w, h);
   for (int x = 0; x * SIDE <= w; x ++) {
     for (int y = 0; y * SIDE <= h; y++) {
       /*if ((x & 1) ^ (y & 1)) {
