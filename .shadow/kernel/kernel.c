@@ -30070,12 +30070,12 @@ void splash() {
 			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * ww / w + y * hh * h / h));
     }
   }*/
-  for (int x = 0; x * SIDE <= MIN(ww, w); x ++) {
-    for (int y = 0; y * SIDE <= MIN(hh, h); y++) {
+  for (int x = 0; x * SIDE < MIN(ww, w); x ++) {
+    for (int y = 0; y * SIDE < MIN(hh, h); y++) {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
-			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * ww + y));
+			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * hh + y));
     }
   }
 }
