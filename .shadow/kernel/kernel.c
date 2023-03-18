@@ -53,6 +53,7 @@ uint32_t get_rgb(int num) {
   return (img_rgb[3 * num] << 16) + (img_rgb[3 * num + 1] << 8) + (img_rgb[3 * num + 2]);
 }
 
+#define MIN(x, y) (x > y) ? y : x
 void splash() {
   AM_GPU_CONFIG_T info = {0};
   ioe_read(AM_GPU_CONFIG, &info);
@@ -66,8 +67,8 @@ void splash() {
 			draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, get_rgb(x * ww / w + y * hh * h / h));
     }
   }*/
-  for (int x = 0; x * SIDE <= ww; x ++) {
-    for (int y = 0; y * SIDE <= hh; y++) {
+  for (int x = 0; x * SIDE <= MIN(ww, w); x ++) {
+    for (int y = 0; y * SIDE <= MIN(hh, h); y++) {
       /*if ((x & 1) ^ (y & 1)) {
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }*/
