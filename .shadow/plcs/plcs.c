@@ -49,10 +49,10 @@ void plcs_worker() {
 		while (!(R == 0 || done[R - 1])) {
 		  cond_wait(&cv, &lk);
 		}
-		//TODO
+		// code
     cond_broadcast(&cv);
-		
 		mutex_unlock(&lk);
+    // TODO
 	  for (int i = 0; i <= R; i++) {
 		  int j = R - i;
       if (0 <= i && i < N && 0 <= j && j < M) {
