@@ -37,10 +37,35 @@ void Tworker(int id) {
   result = dp[N - 1][M - 1];
 }
 
-int R;
+int R = 0;
+bool done[20000];
+mutex_t lk = MUTEX_INIT();
+cond_t cv = COND_INIT();
+
 void plcs_worker() {
+  for (int R = 0; R < N + M - 1) {
+		mutex_lock(&lk);
+		while (!(R == 0 || done[R - 1])) {
+		  cond_wait(&cv, &lk);
+		}
+		//TODO
+    cond_broadcast(&cv);
+		
+		mutex_unlock(&lk);
+	  for (int i = 0; i <= R; i++) {
+		  int j = R - i;
+      if (0 <= i && i < N && 0 <= j && j < M) {
+        int skip_a = DP(i - 1, j);
+        int skip_b = DP(i, j - 1);
+        int take_both = DP(i - 1, j - 1) + (A[i] == B[j]);
+        dp[i][j] = MAX3(skip_a, skip_b, take_both);
+		  }
+	  }
+		done[R] = 1;
+	}
 	//int len = MAX(N, M), wid = MIN(N, M);
-  for (int i = 0; i <= R; i++) {
+  /*
+	for (int i = 0; i <= R; i++) {
 		int j = R - i;
     if (0 <= i && i < N && 0 <= j && j < M) {
       int skip_a = DP(i - 1, j);
@@ -49,6 +74,8 @@ void plcs_worker() {
       dp[i][j] = MAX3(skip_a, skip_b, take_both);
 		}
 	}
+	*/
+  //done[R++] = 1;
 }
 
 int main(int argc, char *argv[]) {
@@ -66,7 +93,7 @@ int main(int argc, char *argv[]) {
   join();*/  // Wait for all workers
   
 
-  for (int round = 0; round < N + M - 1; round++) {
+  /*for (int round = 0; round < N + M - 1; round++) {
 	// 1. 计算出本轮能够计算的单元格
 	  R = round;
 	  //int nr = (round < n) ? round : (2 * n - 1 - round);
@@ -76,6 +103,10 @@ int main(int argc, char *argv[]) {
 		}
 	// 3. 等待线程执行完毕
 	  join();
+	}*/
+	for (int i = 0; i < T; i++) {
+    create(plcs_worker);
 	}
+	join();
   printf("%d\n", dp[N - 1][M - 1]);
 }
