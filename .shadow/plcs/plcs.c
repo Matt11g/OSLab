@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "thread.h"
 #include "thread-sync.h"
+#include <stdbool.h>
 
 #define MAXN 10000
 int T, N, M;
@@ -15,7 +16,7 @@ int result;
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 #define MAX3(x, y, z) MAX(MAX(x, y), z)
 
-spinlock_t lk = SPIN_INIT();
+//spinlock_t lk = SPIN_INIT();
 
 void Tworker(int id) {
   if (id != 1) {
@@ -38,12 +39,12 @@ void Tworker(int id) {
 }
 
 int R = 0;
-bool done[20000];
+bool done[20002];
 mutex_t lk = MUTEX_INIT();
 cond_t cv = COND_INIT();
 
 void plcs_worker() {
-  for (int R = 0; R < N + M - 1) {
+  for (int R = 0; R < N + M - 1; R++) {
 		mutex_lock(&lk);
 		while (!(R == 0 || done[R - 1])) {
 		  cond_wait(&cv, &lk);
